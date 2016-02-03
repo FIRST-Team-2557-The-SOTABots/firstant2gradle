@@ -1,10 +1,10 @@
 # firstant2gradle
 This is a utility that will allow teams competing in the FIRST Robotics Competition to convert their Ant build systems to Gradle.
 
-Gradle is an extendable build system that is becoming industry standard. This conversion tool makes use of an open source project called (GradleRIO)[https://github.com/Open-RIO/GradleRIO], allowing the official WPI libraries to be used directly in a Gradle build system.
+Gradle is an extendable build system that is becoming industry standard. This conversion tool makes use of an open source project called [GradleRIO](https://github.com/Open-RIO/GradleRIO), allowing the official WPI libraries to be used directly in a Gradle build system.
 
 ## Installing
-Make sure that you have (Node.js)[https://nodejs.org/en/] installed. Afterwords, run the following command:
+Make sure that you have [Node.js](https://nodejs.org/en/) installed. Afterwords, run the following command:
 ```
 sudo npm install -g firstant2gradle     # MACOSX/LINUX
 npm install -g firstant2gradle          # WINDOWS
