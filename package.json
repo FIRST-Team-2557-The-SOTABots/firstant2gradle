@@ -1,0 +1,32 @@
+{
+  "name": "firstant2gradle",
+  "version": "1.0.0",
+  "description": "Automatically converts an Ant build system to Gradle for FIRST Robotics Competition teams",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "author": "Philip Rader",
+  "license": "Apache-2.0",
+  "preferGlobal": true,
+  "bin": {
+    "firstant2gradle": "index.js"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/FIRST-Team-2557-The-SOTABots/FIRSTAntToGradle.git"
+  },
+  "dependencies": {
+    "adm-zip": "^0.4.7",
+    "colors": "^1.1.2",
+    "globule": "^0.2.0",
+    "is-there": "^4.3.1",
+    "nodegit": "^0.10.0",
+    "progress": "^1.1.8",
+    "prompt": "^0.2.14",
+    "shelljs": "^0.5.3",
+    "wget-improved": "^1.3.0"
+  }
+}
