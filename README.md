@@ -26,4 +26,4 @@ In your terminal interface, execute the following command:
 ```
 firstant2gradle
 ```
-The tool will ask you if the directory contains "build.xml". You can simply type "y" and hit enter to move on. Afterwords, enter the digits of your team number. The tool will now procede to convert your Ant build to Gradle!
+The tool will ask you if the directory contains "build.xml". You can simply type "y" and hit enter to move on. Afterwords, enter the digits of your team number and hit enter. The tool will now procede to convert your Ant build to Gradle!
