@@ -13,10 +13,10 @@ npm install -g firstant2gradle          # WINDOWS
 ## Converting an Ant build to Gradle
 
 ### For those who don't know the command line
-1) Open your terminal interface (Terminal on Mac and Ubuntu, Command Prompt on Windows). Type "cd ", but do not press enter yet!
-2) Open your file browser and browse to the root folder containing your code. There should be a file in the folder called "build.xml".
-3) Drag and drop the folder into your terminal interface. The terminal should have filled in the path to the folder.
-4) Hit "enter" to execute the command, and move on to "Doing the conversion"
+1. Open your terminal interface (Terminal on Mac and Ubuntu, Command Prompt on Windows). Type "cd ", but do not press enter yet!
+2. Open your file browser and browse to the root folder containing your code. There should be a file in the folder called "build.xml".
+3. Drag and drop the folder into your terminal interface. The terminal should have filled in the path to the folder.
+4. Hit "enter" to execute the command, and move on to "Doing the conversion"
  
 ### For those who know the command line
 Change the directory of your terminal to the root directory of your code (containing "build.xml"). Move on to "Doing the conversion" 
