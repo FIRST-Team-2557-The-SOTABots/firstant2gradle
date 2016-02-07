@@ -36,6 +36,9 @@ var team_number;
 prompt.get(schema, function(err, result) {
     team_number = result.team_number;
     if(result.yesno_cordir.match(/y[es]*/g)) {
+        console.log("Creating a backup...".cyan);
+        cp("-r", "./.", "../FIRSTANT2GRADLE_BACKUP/");
+        
         console.log("Beginning to convert...".green);
         
         rm("-rf", "bin");
@@ -66,6 +69,14 @@ prompt.get(schema, function(err, result) {
             mv("GradleRIO4Dummies.txt", "GradleRIO_HOWTO.txt");
             
             rm("-rf", ".project", ".classpath", "*.iml", "*.ipr", "*.iws", ".idea");
+            
+            console.log("Changing sources to Maven-style...".cyan);
+            mkdir("main");
+            cd("main");
+            mkdir("java");
+            cd("..");
+            mv("src/*", "main/java");
+            mv("main", "src");
             
             console.log("Generating an appropriate .gitignore file...".cyan);
             fs.writeFile(".gitignore", "*.class\n" +
@@ -108,6 +119,7 @@ prompt.get(schema, function(err, result) {
                         console.log("1) Edit build.gradle to ensure that everything is in order.");
                         console.log("2) Make sure that gradle/**/*.jar is not in your .gitignore file.");
                         console.log("3) Make sure that your IDE specific project files are deleted (.project & .classpath for Eclipse).");
+                        console.log("4) If this conversion has not worked as expected, a backup was made before conversion up one directory in 'FIRSTANT2GRADLE_BACKUP'.");
                     });
                 });
             });
