@@ -45,7 +45,7 @@ prompt.get(schema, function(err, result) {
         rm("build.properties", "build.xml");
         
         console.log("Downloading GradleRIO, this may take some time...".cyan);
-        var download = wget.download("https://github.com/Open-RIO/GradleRIO/releases/download/v3.0.0/GradleRIO.zip",
+        var download = wget.download("https://github.com/Open-RIO/GradleRIO/raw/master/Quickstart.zip",
             "GradleRIO.zip", {});
         download.on('error', function(err) {
             console.log(colors.red(err));
@@ -63,12 +63,7 @@ prompt.get(schema, function(err, result) {
             rm("GradleRIO.zip");
             
             console.log("Undergoing cleanup...".cyan);
-            rm("-rf", "GradleRIO/src");
-            mv("GradleRIO/*", pwd());
-            rm("-rf", "GradleRIO");
-            mv("GradleRIO4Dummies.txt", "GradleRIO_HOWTO.txt");
-            
-            rm("-rf", ".project", ".classpath", "*.iml", "*.ipr", "*.iws", ".idea");
+            rm("-rf", ".project", ".classpath", "*.iml", "*.ipr", "*.iws", ".idea", "bin", "build");
             
             console.log("Changing sources to Maven-style...".cyan);
             mkdir("main");
@@ -95,17 +90,23 @@ prompt.get(schema, function(err, result) {
             ".gradletasknamecache\n" +
             ".gradle/\n" +
             "build/\n" +
-            "!gralde/wrapper/gradle-wrapper.jar\n" +
+            "!gradle/wrapper/gradle-wrapper.jar\n" +
+            "!gradle/wrapper/gradle-wrapper.properties\n" +
             "!gradle/libs/GradleRIO.jar\n" +
             "!libs/*.jar\n", 'utf8', function(err) {
                 if(err) return console.log(err);
                 
+                console.log("Converting gradlew to *nix style endings...".cyan);
+                fs.writeFileSync("gradlew", fs.readFileSync("gradlew", "utf8").replace(/\r/g, "\n"));
+                console.log("Adding permissions to gradlew...".cyan);
+                chmod("+x", "gradlew");
+
                 console.log("Editing build.gradle...".cyan);
                 fs.readFile("build.gradle", 'utf8', function (err,data) {
                     if (err) {
                         return console.log(err);
                     }
-                    var result = data.replace('0000', team_number).replace('0000', team_number);
+                    var result = data.replace(/0000|5333/g, team_number);
 
                     fs.writeFile("build.gradle", result, 'utf8', function (err) {
                         if (err) return console.log(err);
@@ -113,12 +114,12 @@ prompt.get(schema, function(err, result) {
                         console.log("Done!\n\n".green);
                         
                         console.log("Congrats!!".rainbow);
-                        console.log("Your Ant build has been converted into Gradle!\n");
+                        console.log("Your Ant build has been converted to Gradle!\n");
                         
                         console.log("Please take the following steps:".magenta);
                         console.log("1) Edit build.gradle to ensure that everything is in order.");
-                        console.log("2) Make sure that gradle/**/*.jar is not in your .gitignore file.");
-                        console.log("3) Make sure that your IDE specific project files are deleted (.project & .classpath for Eclipse).");
+                        console.log("2) Make sure that gradle/wrapper/gradle-wrapper.jar is not in your .gitignore file.");
+                        console.log("3) Make sure that your IDE specific project files are ignored in your .gitignore (.project & .classpath for Eclipse) and have been removed from version control.");
                         console.log("4) If this conversion has not worked as expected, a backup was made before conversion up one directory in 'FIRSTANT2GRADLE_BACKUP'.");
                     });
                 });
